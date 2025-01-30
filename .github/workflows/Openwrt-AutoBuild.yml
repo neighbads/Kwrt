@@ -332,6 +332,7 @@ jobs:
         name: ${{ env.VERSION }}_${{matrix.target}}_cache
         path: |
           openwrt/
+          !**/*:*
 
     - name: Create release
       id: create_release
