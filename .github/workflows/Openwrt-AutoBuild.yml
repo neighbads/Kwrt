@@ -317,13 +317,21 @@ jobs:
         REMOTE_USER: root
         TARGET: "/www/wwwroot/dl.openwrt.ai/releases/tmp/"
 
-    - name: Upload firmware for artifact
+    # - name: Upload firmware for artifact
+    #   uses: actions/upload-artifact@main
+    #   if: env.UPLOAD_FIRMWARE_FOR_ARTIFACT == 'true'
+    #   with:
+    #     name: ${{ env.VERSION }}_${{matrix.target}}
+    #     path: |
+    #       openwrt/bin/targets/
+
+    - name: Upload firmware for cache artifact
       uses: actions/upload-artifact@main
       if: env.UPLOAD_FIRMWARE_FOR_ARTIFACT == 'true'
       with:
-        name: ${{ env.VERSION }}_${{matrix.target}}
+        name: ${{ env.VERSION }}_${{matrix.target}}_cache
         path: |
-          openwrt/bin/targets/
+          openwrt/
 
     - name: Create release
       id: create_release
